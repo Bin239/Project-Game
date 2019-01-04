@@ -13,6 +13,7 @@ You have strength index and it goes down by a point every second.
 You will die if the strength level goes below 0. To prevent that, you can increase the strength by pressing feed key.
 If you move close-enough to the weak ghost within three second/while the ghost still exists, you get a point.
 To kill a strong ghost, you must have a minimum of 5 strength. if you have less than 5 strength and go near, you get killed.
+you get 3 points for killing strong ghosts
 the game ends at the end of 100 seconds
 your score is displayed.
 
@@ -25,6 +26,9 @@ timer countdown
 your score
 feed button
 when game ends: show final score.
+
+
+
 
 
 
