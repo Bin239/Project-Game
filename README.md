@@ -18,14 +18,14 @@ Basic Requirements:
 10)your score is displayed.
 
 Screen:
-ghosts
-background picture
-your character
-your strength (0-20)
-timer countdown
-your score
-feed button
-when game ends: show final score.
+1)ghosts
+2)background picture
+3)your character
+4)your strength (0-20)
+5)timer countdown
+6)your score
+7)feed button
+8)when game ends: show final score.
 
 
 
