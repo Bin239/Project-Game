@@ -1,4 +1,4 @@
-console.log("JS working");
+
 
 class enemy {
     constructor() {
@@ -32,23 +32,13 @@ let mySamurai = new samurai();
 function timeremaining() {
     if (mySamurai.time > 0) {
         mySamurai.time--;
-        $(".time").append(mySamurai.time)
+        $(".time").text("Time Remaining: " +  mySamurai.time)
+        
+
     }
 }
 let Timedecrease = setInterval(timeremaining, 1000);
 
-
-
-// let samuraiStrength = setInterval(strengthRemaining, 1000);
-
-
-
-// function strengthRemaining() {
-//     if (mySamurai.strength > 0) {
-//         mySamurai.strength--;
-//         //$("#strength").append(mySamurai.strength);
-//     }
-// }
 
 function feedSamurai() {
     if (mySamurai.strength < 80) {
@@ -96,11 +86,13 @@ function resetCharacter() {
 $(document).keydown(function (e) {
     switch (e.which) {
         case 37:
-            moveLeft();
+        if(($("#samurai").offset().left > 260)){
+            moveLeft();}
             //left arrow key
             break;
         case 39:
-            moveright();
+        if(($("#samurai").offset().left < 1000)){
+            moveright();}
             //right arrow key
             break;
         case 32:
