@@ -23,7 +23,7 @@ class samurai {
     constructor() {
         this.strength = 100,
             this.score = 0;
-        this.time = 20;
+        this.time = 100;
     }
 }
 
