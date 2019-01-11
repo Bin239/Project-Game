@@ -1,5 +1,6 @@
 
 
+
 class enemy {
     constructor() {
         this.strength = 20;
@@ -22,8 +23,8 @@ let finalBoss = new finalEnemy;
 class samurai {
     constructor() {
         this.strength = 100,
-            this.score = 0;
-        this.time = 100;
+            this.score = 5;
+        this.time = 60;
     }
 }
 
@@ -32,39 +33,73 @@ let mySamurai = new samurai();
 function timeremaining() {
     if (mySamurai.time > 0) {
         mySamurai.time--;
-        $(".time").text("Time Remaining: " +  mySamurai.time)
-        
+        $(".time").text("Time Remaining: " + mySamurai.time)
+
 
     }
 }
 let Timedecrease = setInterval(timeremaining, 1000);
 
 
+
+
 function feedSamurai() {
-    if (mySamurai.strength < 80) {
-        mySamurai.strength += 15;
+    if (mySamurai.strength < 90) {
+        mySamurai.strength += 10;
     }
 
 }
-function attackSuccessfull(){
-    firstEnemy.strength -= 5;
-    console.log(firstEnemy.strength);
-}
-//attackSuccessfull();
 
-function enemyAttack(){
-    mySamurai.strength -= 10;
-}
-//enemyAttack();
+function resetEnemy() {
+    firstEnemy.strength = 20;
+    $("#image3").attr("src", "pics/secondEnemy.gif");
+    $("#image3").css("height", "280px");
+    $("#image3").css("width", "280px");
+    $("#samurai").css("margin-top", "420px");
 
-
-function attack() {
-    $("#samurai").attr("src", "pics/samurai3.gif");
-    setTimeout(resetCharacter, 1700);
-    console.log(firstEnemy.strength);
 
 }
 
+function enemyDeadPicture() {
+    $("#image3").attr("src", "pics/explode.gif");
+
+}
+
+
+for (let i = 0; i < 3; i++) {
+
+    function attack() {
+
+       
+
+        if (($("#samurai").offset().left < 350)) {
+
+            $("#score").text("Score: " + mySamurai.score);
+
+            if (firstEnemy.strength > 0) {
+
+                firstEnemy.strength -= 5;
+   
+            }
+            mySamurai.score += 5;
+            
+        }
+
+        $("#samurai").attr("src", "pics/samurai3.gif");
+        
+        if (firstEnemy.strength < 1) {
+            //scoreIncrease();
+            setTimeout(enemyDeadPicture, 1000);
+            clearTimeout(enemyDeadPicture);
+            setTimeout(resetEnemy, 1700);
+
+        }
+
+        setTimeout(resetCharacter, 1700);
+        console.log(firstEnemy.strength);
+        console.log(mySamurai.score);
+    }
+}
 
 function moveLeft() {
     $("#samurai").stop().animate({
@@ -80,24 +115,37 @@ function moveright() {
 
 function resetCharacter() {
     $("#samurai").attr("src", "pics/staticninja.gif")
+
 }
 
 //functionality for when pressing up/down/left/right arrow
 $(document).keydown(function (e) {
     switch (e.which) {
         case 37:
-        if(($("#samurai").offset().left > 260)){
-            moveLeft();}
+            if (($("#samurai").offset().left > 260)) {
+                moveLeft();
+            }
             //left arrow key
             break;
         case 39:
-        if(($("#samurai").offset().left < 1000)){
-            moveright();}
+            if (($("#samurai").offset().left < 1000)) {
+                moveright();
+            }
             //right arrow key
             break;
         case 32:
-            attack();
-            setInterval(enemyDies, 1300);
+            gameOver();
+
+            if (mySamurai.strength > 9) {
+                attack();
+            }
+            //setTimeout(gameOver, 2000);
+
+            if (mySamurai.strength > 9) {
+                mySamurai.strength -= 10;
+            }
+
+            //setInterval(enemyDies, 1300);
             break;
         case 38:
             feedSamurai();
@@ -108,31 +156,21 @@ $(document).keydown(function (e) {
 })
 
 
-function enemyDies() {
-    if (firstEnemy.strength < 1) {
-        $(".image3").attr("src", "pics/explode.gif");
-        setTimeout(resetEnemy, 2000);
-    }
-}
 
-
-function resetEnemy() {
-    $(".image3").attr("src", "pics/ghost5.gif")
-}
 
 //samurai strength progressbar
 function updateStrengthBar() {
     var elem = document.getElementById("strengthProgress");
     var id = setInterval(frame, 500);
     function frame() {
-        
+
         // if(width <= 15){
         //     $("#strengthProgress").css("background-color", "hsl(14, 78%, 39%)")
         // }
         if (width <= 0) {
             clearInterval(id);
-        } 
-        
+        }
+
         else {
             var width = mySamurai.strength;
             elem.style.width = width + '%';
@@ -145,13 +183,28 @@ function updateStrengthBar() {
 
 updateStrengthBar();
 
-var $stored_selector = $('#samurai');
 
-if($($stored_selector.offset().left < 300)){
-    enemyAttack();
+function gameOver() {
+    if (mySamurai.strength < 1 || mySamurai.time == 0) {
+        $("#samurai").hide();
+        $("#image3").hide();
+        setTimeout(alertFunction, 300);
+
+    }
 }
 
-console.log($stored_selector.offset());
+function alertFunction() {
+    alert("Gameover, Refresh the page to play again!!");
+}
+
+
+// var $stored_selector = $('#samurai');
+
+// if($($stored_selector.offset().left < 300)){
+   // enemyAttack();
+// }
+
+// console.log($stored_selector.offset());
 
 
 //$stored_selector.offset();
