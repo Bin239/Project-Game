@@ -67,7 +67,7 @@ background-color:  #8d2626;
 #samurai {
     position: absolute;
     top: 0;
-    margin-left: 570px;
+    margin-left: 370px;
     margin-top: 375px;
 
 }
@@ -84,5 +84,5 @@ background-color:  #8d2626;
   #strengthProgress {
     width: 100%;
     height: 30px;
-    background-color: rgb(173, 104, 72);
+    background-color: rgba(136, 120, 28, 0.897);
   }
